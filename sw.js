@@ -1,10 +1,10 @@
 // caching the files in that constante
 const filesToCache = [
-    '',
-    'index.html',
-    'main.css',
-    'random.png',
-    'main.js',
+    'https://endofdiscussion.github.io/pwa_demo/',
+    'https://endofdiscussion.github.io/pwa_demo/index.html',
+    'https://endofdiscussion.github.io/pwa_demo/main.css',
+    'https://endofdiscussion.github.io/pwa_demo/random.png',
+    'https://endofdiscussion.github.io/pwa_demo/main.js',
 ]
 
 const staticCacheName = 'first-cache'
