@@ -1,6 +1,5 @@
 // caching the files in that constante
 const filesToCache = [
-    'https://endofdiscussion.github.io/pwa_demo/',
     'https://endofdiscussion.github.io/pwa_demo/index.html',
     'https://endofdiscussion.github.io/pwa_demo/main.css',
     'https://endofdiscussion.github.io/pwa_demo/random.png',
