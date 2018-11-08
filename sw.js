@@ -1,30 +1,34 @@
 const filesToCache = [
-    '/index.html',
-    '/main.css',
-    '/random.png',
-    '/main.js',
+	'/index.html',
+	'/main.css',
+	'/random.png',
+	'/main.js',
 ]
 
 const staticCacheName = 'first-cache'
 
-// when installevent is triggered write to console, then open cache and write the file to it
-self.addEventListener('install', function(event) {
-    console.log('Attempting to install service worker and cache static assets')
+// When the install event gets triggered then write to console and cache resources
+self.addEventListener('install', event => {
+	console.log('Attempting to install service worker and cache static assets')
 
-    event.waitUntil(
-        caches.open(staticCacheName).then(function(cache) {
-            return cache.addAll(filesToCache)
-        })
-    )
+	event.waitUntil(
+		caches.open(staticCacheName).then(
+			cache => cache.addAll(filesToCache)
+		).then(
+			() => self.skipWaiting()
+		)
+	)
 })
 
-// fetchevent is triggered when the site sends a new request, then opens cach and see if request url matches a cached site. If so respond with the cached site, otherwise fetch from server
-self.addEventListener('fetch', function(event) {
-    console.log(event.request.url);
+// When the fetch event gets triggered
+// check if the requested url matches an already cachedrequest
+// When the request is already cached, then it loads the cached url
+self.addEventListener('fetch', event => {
+	console.log(event.request.url)
 
-    event.respondWith(
-        caches.match(event.request).then(function(response) {
-            return response || fetch(event.request);
-        })
-    )
-});
+	event.respondWith(
+		caches.match(event.request).then(response => {
+			return response || fetch(event.request)
+		})
+	)
+})
