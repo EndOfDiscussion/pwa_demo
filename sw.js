@@ -1,5 +1,6 @@
 const filesToCache = [
 	'./index.html',
+    './main.css',
 ]
 
 const staticCacheName = 'first-cache'
