@@ -1,10 +1,10 @@
 // caching the files in that constante
 const filesToCache = [
-    'pwa_demo/index.html',
-    'pwa_demo/main.css',
-    'pwa_demo/random.png',
-    'pwa_demo/main.js',
-    'pwa_demo/public/',
+    'index.html',
+    'main.css',
+    'random.png',
+    'main.js',
+    'public/',
 ]
 
 const staticCacheName = 'first-cache'
