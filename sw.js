@@ -5,6 +5,7 @@ const filesToCache = [
     'https://endofdiscussion.github.io/pwa_demo/main.css',
     'https://endofdiscussion.github.io/pwa_demo/random.png',
     'https://endofdiscussion.github.io/pwa_demo/main.js',
+    'https://endofdiscussion.github.io/pwa_demo/public/',
 ]
 
 const staticCacheName = 'first-cache'
