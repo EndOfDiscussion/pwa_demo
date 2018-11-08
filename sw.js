@@ -24,7 +24,8 @@ self.addEventListener('install', event => {
 // check if the requested url matches an already cachedrequest
 // When the request is already cached, then it loads the cached url
 self.addEventListener('fetch', event => {
-	console.log(event.request.url)
+	if (event.request) console.log(event.request.url)
+	else console.log('event.request does not exist --', event)
 
 	event.respondWith(
 		caches.match(event.request).then(response => {
