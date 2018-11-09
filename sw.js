@@ -4,6 +4,7 @@ const filesToCache = [
 	'./main.css',
 	'./main.js',
 	'./random.png',
+	'./public/manifest.json',
 ]
 
 const staticCacheName = 'first-cache'
