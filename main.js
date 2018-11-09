@@ -1,6 +1,7 @@
-// checks for ServicWorker support in brwoser, then registers the sw and install event is triggered
+// checks for servic worker brwoser support
+// when the browser does support register a new service worker
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').then(function() {
-        console.log("Service Worker Registered")
-    });
+	navigator.serviceWorker.register('service-worker.js').then(() => {
+		console.log('[Service Worker] Successfully registered')
+	})
 }
