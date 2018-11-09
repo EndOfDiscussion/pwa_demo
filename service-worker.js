@@ -1,23 +1,40 @@
-const filesToCache = [
+const cacheName = 'first-cache'
+const cacheAssets = [
 	'./',
 	'./index.html',
 	'./main.css',
 	'./main.js',
-	'./random.png',
 	'./manifest.json',
+	'./public/img/random.png',
+	'./public/img/icons/android-chrome-192x192.png',
+	'./public/img/icons/apple-touch-icon-152x152.png',
+	'./public/img/icons/apple-touch-icon-76x76.png',
+	'./public/img/icons/favicon-32x32.png',
+	'./public/img/icons/safari-pinned-tab.svg',
+	'./public/img/icons/android-chrome-512x512.png',
+	'./public/img/icons/apple-touch-icon-180x180.png',
+	'./public/img/icons/apple-touch-icon.png',
+	'./public/img/icons/msapplication-icon-144x144.png',
+	'./public/img/icons/apple-touch-icon-120x120.png',
+	'./public/img/icons/apple-touch-icon-60x60.png',
+	'./public/img/icons/favicon-16x16.png',
+	'./public/img/icons/mstile-150x150.png',
 ]
-
-const staticCacheName = 'first-cache'
 
 // When the install event gets triggered then write to console and cache resources
 self.addEventListener('install', event => {
-	console.log('Attempting to install service worker and cache static assets')
+	console.log('[Service ´Worker] Installing and caching assets')
 
 	event.waitUntil(
-		caches.open(staticCacheName).then(
-			cache => cache.addAll(filesToCache)
-		).then(
+		caches.open(cacheName).then(cache => {
+			console.log('[Service Worker] Caching assets...')
+			console.table(cacheAssets)
+
+			cache.addAll(cacheAssets)
+		}).then(
 			() => self.skipWaiting()
+		).catch(
+			err => console.error(err)
 		)
 	)
 })
@@ -26,14 +43,24 @@ self.addEventListener('install', event => {
 // check if the requested url matches an already cachedrequest
 // When the request is already cached, then it loads the cached url
 self.addEventListener('fetch', event => {
+	console.log('[Service Worker] Checking if request is cached')
+
 	event.respondWith(
-		caches.open(staticCacheName).then(cache => {
+		caches.open(cacheName).then(cache => {
 			return cache.match(event.request).then(response => {
 				return response || fetch(event.request).then(response => {
+					console.log('[Service Worker] Caching requrest')
 					cache.put(event.request, response.clone())
+
 					return response
-				})
-			})
-		})
+				}).catch(
+					err => console.error(err)
+				)
+			}).catch(
+				err => console.error(err)
+			)
+		}).catch(
+			err => console.error(err)
+		)
 	)
 })
