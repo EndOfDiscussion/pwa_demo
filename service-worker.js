@@ -2,6 +2,7 @@ const cacheName = 'first-cache'
 const cacheAssets = [
 	'/pwa_demo/',
 	'/pwa_demo/index.html',
+	'/pwa_demo/about.html',
 	'/pwa_demo/main.css',
 	'/pwa_demo/main.js',
 	'/pwa_demo/ios_popup.js',
