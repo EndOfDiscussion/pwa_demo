@@ -4,6 +4,7 @@ const cacheAssets = [
 	'/pwa_demo/index.html',
 	'/pwa_demo/main.css',
 	'/pwa_demo/main.js',
+	'/pwa_demo/ios_popup.js',
 	'/pwa_demo/manifest.json',
 	'/pwa_demo/public/img/random.png',
 	'/pwa_demo/public/img/icons/android-chrome-192x192.png',
