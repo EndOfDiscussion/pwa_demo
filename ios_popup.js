@@ -14,6 +14,5 @@ function isIos() {
 // }
 
 if ( isIos() == true ) {
-	alert("Win!");
 	document.getElementById('banner').style.display = "block";
 }
