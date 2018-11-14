@@ -6,6 +6,8 @@ function getLocation() {
 	}
 }
 
+var loc = document.getElementById("loc");
+
 function showPosition(position) {
 	var location = {
 		Latitude: position.coords.latitude,
@@ -13,6 +15,6 @@ function showPosition(position) {
 	}
 
 	console.log(location)
+	loc.innerHTML = "Latitiude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
 }
-
-getLocation();
+getLocation()
