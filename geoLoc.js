@@ -28,7 +28,7 @@ function showError(error) {
 function initMap(position) {
 	var pos = {lat: position.coords.latitude, lng: position.coords.longitude}
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 8,
+		zoom: 14,
 		center: pos
 	});
 	var marker = new google.maps.Marker({
