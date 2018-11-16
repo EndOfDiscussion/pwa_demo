@@ -35,7 +35,11 @@
 	  var OneSignal = window.OneSignal || [];
 	  OneSignal.push(function() {
 	    OneSignal.init({
-	      appId: "a685e46d-fdd2-4ad8-8680-eedbf098a2a8",
+	      	appId: "a685e46d-fdd2-4ad8-8680-eedbf098a2a8",
+		  	welcomeNotification: {
+        		"title": "My Custom Title",
+        		"message": "Thanks for subscribing!",
+    		},
 	    });
 	  });
 	</script>
