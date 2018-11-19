@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="theme-color" content="#03f">
+	<link rel="manifest" href="manifest.json">
+	<meta name="description" content="Just a progressive web application demo">
+	<meta name="apple-mobile-web-app-title" content="PWA Demo">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="msapplication-navbutton-color" content="#03f">
+	<meta name="msapplication-TileColor" content="#03f">
+	<meta name="msapplication-TileImage" content="public/img/icons/msapplication-icon-144x144.png">
+	<meta name="application-name" content="PWA Demo">
+	<meta name="msapplication-tooltip" content="Progressive Web App Demo">
+	<meta name="msapplication-starturl" content="/">
+	<meta name="full-screen" content="yes">
+	<meta name="browsermode" content="application">
+	<link href="public/img/icons/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+	<link href="public/img/icons/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+	<link href="public/img/icons/apple-touch-icon.png" rel="apple-touch-icon">
+	<link href="public/img/icons/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+	<link href="public/img/icons/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+	<link href="public/img/icons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+	<link href="public/img/icons/android-chrome-512x512.png" rel="icon" sizes="512x512">
+	<link href="public/img/icons/android-chrome-192x192.png" rel="icon" sizes="192x192">
+	<link rel="mask-icon" href="public/img/icons/safari-pinned-tab.svg" color="#03f">
+	<link rel="stylesheet" type="text/css" media="screen" href="main.css"/>
+	<script src="main.js"></script>
+	<title>PWA Demo</title>
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+	<script>
+	  var OneSignal = window.OneSignal || [];
+	  OneSignal.push(function() {
+	    OneSignal.init({
+	      	appId: "a685e46d-fdd2-4ad8-8680-eedbf098a2a8",
+		  	welcomeNotification: {
+        		"title": "My Custom Title",
+        		"message": "Thanks for subscribing!",
+    		},
+	    });
+	  });
+	</script>
+</head>
+<body>
+	<div>
+		<h1>Thank you for subscribing to push notifications</h1>
+
+	<script src="ios_popup.js"></script>
+	</div>
+	<div class='onesignal-customlink-container'></div>
+</body>
+</html>
