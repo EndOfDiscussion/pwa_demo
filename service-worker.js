@@ -66,3 +66,22 @@ self.addEventListener('fetch', event => {
 		)
 	)
 })
+
+self.addEventListener('activate', event => {
+  console.log('Activating new service worker');
+
+  const cacheWhitelist = [cacheName];
+
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(name => {
+			// indesOf returns -1 if cacheWhitelist isn't an index of name
+          if (cacheWhitelist.indexOf(name) === -1) {
+            return caches.delete(name);
+          }
+        })
+      );
+    })
+  );
+});
