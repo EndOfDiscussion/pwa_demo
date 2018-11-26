@@ -70,7 +70,7 @@ self.addEventListener('fetch', event => {
 
 self.addEventListener('activate', event => {
 	console.log('Activating new service worker');
-	window.Notification.requestPermission(status => {
+	this.Notification.requestPermission(status => {
 		console.log('[Service Worker] Notification permission ' + status);
 	});
 
