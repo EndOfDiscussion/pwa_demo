@@ -42,10 +42,16 @@
 				},
 			});
 		});
+		function TESCHT() {
+			Notification.requestPermission(status => {
+				console.log('[Service Worker] Notification permission ' + status);
+			});
+		}
 	</script>
 </head>
 <body>
 	<div>
+		<button onclick="TESCHT()">TESCHT</button>
 		<h1>Hello World</h1>
 		<img src="public/img/18-plus.png" alt="random" height="350" width="350"/>
 		<div id="banner">

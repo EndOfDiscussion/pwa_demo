@@ -26,9 +26,6 @@ const cacheAssets = [
 // When the install event gets triggered then write to console and cache resources
 self.addEventListener('install', event => {
 	console.log('[Service ´Worker] Installing and caching assets');
-	Notification.requestPermission(status => {
-		console.log('[Service Worker] Notification permission ' + status);
-	});
 
 	event.waitUntil(
 		caches.open(cacheName).then(cache => {
