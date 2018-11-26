@@ -23,6 +23,12 @@ const cacheAssets = [
 	'/pwa_demo/public/img/icons/mstile-150x150.png',
 ]
 
+function checkNotificationPermission() {
+	Notification.requestPermission(status => {
+		console.log('[Service Worker] Notification permission ' + status);
+	});
+}
+
 // When the install event gets triggered then write to console and cache resources
 self.addEventListener('install', event => {
 	console.log('[Service ´Worker] Installing and caching assets');
@@ -70,6 +76,7 @@ self.addEventListener('fetch', event => {
 
 self.addEventListener('activate', event => {
 	console.log('Activating new service worker');
+	checkNotificationPermission()
 
 	const cacheWhitelist = [cacheName];
 
