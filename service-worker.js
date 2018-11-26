@@ -25,14 +25,17 @@ const cacheAssets = [
 
 // When the install event gets triggered then write to console and cache resources
 self.addEventListener('install', event => {
-	console.log('[Service ´Worker] Installing and caching assets')
+	console.log('[Service ´Worker] Installing and caching assets');
+	Notification.requestPermission(status => {
+		console.log('[Service Worker] Notification permission ' + status);
+	});
 
 	event.waitUntil(
 		caches.open(cacheName).then(cache => {
-			console.log('[Service Worker] Caching assets...')
-			console.table(cacheAssets)
+			console.log('[Service Worker] Caching assets...');
+			console.table(cacheAssets);
 
-			cache.addAll(cacheAssets)
+			cache.addAll(cacheAssets);
 		}).then(
 			() => self.skipWaiting()
 		).catch(
@@ -45,22 +48,23 @@ self.addEventListener('install', event => {
 // check if the requested url matches an already cachedrequest
 // When the request is already cached, then it loads the cached url
 self.addEventListener('fetch', event => {
-	console.log('[Service Worker] Checking if request is cached')
+	console.log('[Service Worker] Checking if request is cached');
 
 	event.respondWith(
 		caches.open(cacheName).then(cache => {
 			return cache.match(event.request).then(response => {
 				return response || fetch(event.request).then(response => {
-					console.log('[Service Worker] Caching requrest')
-					cache.put(event.request, response.clone())
+					console.log('[Service Worker] Caching requrest');
+					console.log('DEBUG: cache =', cache); // DEBUG
+					cache.put(event.request, response.clone());
 
-					return response
+					return response;
 				}).catch(
 					err => console.error(err)
-				)
+				);
 			}).catch(
 				err => console.error(err)
-			)
+			);
 		}).catch(
 			err => console.error(err)
 		)
@@ -68,20 +72,20 @@ self.addEventListener('fetch', event => {
 })
 
 self.addEventListener('activate', event => {
-  console.log('Activating new service worker');
+	console.log('Activating new service worker');
 
-  const cacheWhitelist = [cacheName];
+	const cacheWhitelist = [cacheName];
 
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(name => {
-			// indesOf returns -1 if cacheWhitelist isn't an index of name
-          if (cacheWhitelist.indexOf(name) === -1) {
-            return caches.delete(name);
-          }
-        })
-      );
-    })
-  );
+	event.waitUntil(
+		caches.keys().then(cacheNames => {
+			return Promise.all(
+				cacheNames.map(name => {
+					// indexOf returns -1 if cacheWhitelist isn't an index of name
+					if (cacheWhitelist.indexOf(name) === -1) {
+						return caches.delete(name);
+					}
+				})
+			);
+		})
+	);
 });

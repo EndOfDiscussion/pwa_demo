@@ -1,4 +1,3 @@
-
 // detect if device is on iOS
 function isIos() {
 	return ['iPhone', 'iPad', 'iPod'].includes(navigator.platform);

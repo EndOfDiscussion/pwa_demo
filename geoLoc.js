@@ -9,6 +9,7 @@ function getLocation() {
 		consol.log( "Geo Location not supported by browser" );
 	}
 }
+
 // if user has no internet, or disabled gps or what ever then show a message.
 function showError(error) {
 	switch(error.code) {
@@ -21,7 +22,7 @@ function showError(error) {
 		case error.TIMEOUT:
 			loc.innerHTML = "The request to get user location timed out."
 			break;
-		case error.UNKNOWN_ERROR:
+		default:
 			loc.innerHTML = "An unknown error occured."
 			break;
 	}
@@ -29,11 +30,14 @@ function showError(error) {
 
 // creates google maps in map div, and displays a marker on the current possition
 function initMap(position) {
-	var pos = {lat: position.coords.latitude, lng: position.coords.longitude}
-	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 14,
-		center: pos
-	});
+	var pos = {
+		lat: position.coords.latitude,
+		lng: position.coords.longitude,
+	}
+	var map = new google.maps.Map(
+		document.getElementById('map'),
+		{ zoom: 14, center: pos }
+	);
 	var marker = new google.maps.Marker({
 		position: pos,
 		map: map

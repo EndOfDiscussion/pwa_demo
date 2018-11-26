@@ -1,40 +1,39 @@
-// checks for servic worker brwoser support
+// checks for servic worker browser support
 // when the browser does support register a new service worker
-window.isUpdateAvailable = new Promise(function(resolve, reject) {
+window.isUpdateAvailable = new Promise((resolve, reject) => {
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('OneSignalSDKWorker.js')
-			.then(reg => {
-				console.log('[Service Worker] Successfully registered')
-				reg.onupdatefound = () => {
-					const installingWorker = reg.installing;
-					installingWorker.onstatechange = () => {
-						switch (installingWorker.state) {
-							case 'installed':
-								if (navigator.serviceWorker.controller) {
-									// new update available
-									resolve(true);
-								} else {
-									// no update available
-									resolve(false);
-								}
-								break;
-						}
-					};
+		.then(reg => {
+			console.log('[Service Worker] Successfully registered');
+			reg.onupdatefound = () => {
+				const installingWorker = reg.installing;
+				installingWorker.onstatechange = () => {
+					switch (installingWorker.state) {
+						case 'installed':
+							if (navigator.serviceWorker.controller) {
+								// new update available
+								resolve(true);
+							} else {
+								// no update available
+								resolve(false);
+							}
+							break;
+					}
 				};
-			})
-			.catch(err => console.error('[SW ERROR]', err));
+			};
+		}).catch(
+			err => console.error('[SW ERROR]', err)
+		);
 	}
 });
 
-
-window['isUpdateAvailable']
-	.then(isAvailable => {
-		if (isAvailable) {
-			const toast = this.toastCtrl.create({
-				message: 'New Update available! Reload the webapp to see the latest juicy changes.',
-				position: 'bottom',
-				showCloseButton: true,
-			});
-			toast.present();
-		}
-	});
+window['isUpdateAvailable'].then(isAvailable => {
+	if (isAvailable) {
+		const toast = this.toastCtrl.create({
+			message: 'New Update available! Reload the webapp to see the latest juicy changes.',
+			position: 'bottom',
+			showCloseButton: true,
+		});
+		toast.present();
+	}
+});
