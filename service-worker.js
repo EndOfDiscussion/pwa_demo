@@ -70,9 +70,12 @@ self.addEventListener('fetch', event => {
 
 self.addEventListener('activate', event => {
 	console.log('Activating new service worker');
-	this.Notification.requestPermission(status => {
-		console.log('[Service Worker] Notification permission ' + status);
-	});
+	if (this.Notification) {
+		console.log(
+			'[Service Worker] Notification permission ' +
+			this.Notification.permission,
+		);
+	}
 
 	const cacheWhitelist = [cacheName];
 
